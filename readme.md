@@ -1,4 +1,3 @@
-
 # Node.js Learning Project 🚀
 
 This repository contains simple Node.js code snippets and projects that I'm working on while learning Node.js.
@@ -9,16 +8,11 @@ This repository contains simple Node.js code snippets and projects that I'm work
 - This repository will grow as I continue learning.
 
 ## 📂 Project Structure
-```
-📁 node 
-┣ [📁 basics](https://github.com/K-Jaswanth-Kumar/Nodejs/tree/main/Basics)
-
-
-```
+📁 node  
+┣ [📁 basics](https://github.com/K-Jaswanth-Kumar/Nodejs/tree/main/basics)  
 
 ## 📚 Topics Covered
 - Node.js Basics (Modules, FS, HTTP)
-
 
 ## 🛠️ Tools & Technologies
 - **Node.js** 🟢
@@ -28,4 +22,3 @@ This repository contains simple Node.js code snippets and projects that I'm work
 
 ## 🤝 Contributions
 This is a personal learning repository, but feel free to fork, open issues, or suggest improvements!
-
