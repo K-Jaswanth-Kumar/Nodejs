@@ -9,7 +9,7 @@ This repository contains simple Node.js code snippets and projects that I'm work
 
 ## 📂 Project Structure
 📁 node  
-┣ [📁 basics](https://github.com/K-Jaswanth-Kumar/Nodejs/tree/main/basics)  
+┣ [📁 basics](https://github.com/K-Jaswanth-Kumar/Nodejs/tree/main/Basics)  
 
 ## 📚 Topics Covered
 - Node.js Basics (Modules, FS, HTTP)
