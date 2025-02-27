@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET_KEY} = require('../config')
+const {JWT_SECRET_KEY} = require('../config/config')
 
 const authMiddleware = (req,res,next)=>{
-    const authHeader = req.headers['authorization']
+    const authHeader = req.headers.authorization
     
     const token = authHeader && authHeader.split(" ")[1]
 
@@ -20,7 +20,7 @@ const authMiddleware = (req,res,next)=>{
         req.userInfo = decodeWebToken
         next()
     } catch (e) {
-        return res.status(500).json({
+        return res.status(401).json({
             success:false,
             message:"Access Denied. Token expire"
         }) 

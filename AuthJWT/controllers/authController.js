@@ -1,7 +1,7 @@
 const User = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const {JWT_SECRET_KEY} = require('../config')
+const {JWT_SECRET_KEY} = require('../config/config')
 // Register Controller
 //@desc Register User
 //@route POST /api/auth/register 
@@ -94,7 +94,7 @@ const loginUser = async (req, res) => {
                 role: userExists.role
             },
             JWT_SECRET_KEY,
-            { expiresIn: "15m" }
+            { expiresIn: "1h" }
         );
 
         // Send response
@@ -114,7 +114,56 @@ const loginUser = async (req, res) => {
 };
 
 
+// Change password
+//@desc Update Password
+//@route PUT /update 
+//@access Public
+const changePassword = async (req,res) =>{
+  try {
+    const userId = req.userInfo.userID
+    // console.log(userId)
+    const {oldPasword,newPassword} = req.body
+
+    const user = await User.findById(userId)
+
+    if(!user){
+      return res.status(400).json({
+        success:false,
+        message:"User not found"
+      })
+    }
+
+    // if password is correct
+    const isPasswordMatching = await bcrypt.compare(oldPasword,user.password)
+
+    if(!isPasswordMatching){
+      return res.status(400).json({
+        success:false,
+        message:"Password not matching"
+      })
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedPassword
+    await user.save()
+
+    res.status(200).json({
+      success:true,
+      message:"Passoword updated"
+    })
+  } catch (e) {
+    console.log(e);
+        res.status(500).json({
+            success: false,
+            message: "Some error occurred"
+        });
+  }
+}
+
 module.exports = {
     loginUser,
-    registerUser
+    registerUser,
+    changePassword
 }
